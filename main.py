@@ -1,3 +1,5 @@
+import rospy
+
 def main():
     print("Hello World")
 
