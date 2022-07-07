@@ -9,8 +9,8 @@ pipeline {
                     }
                     steps {
                         script {
-                            def jsonSlurper = new JsonSlurper()
-                            def object = jsonSlurper.parseText('{ "items": [1, 2] }')
+                            import groovy.json.JsonSlurper
+                            def object = new JsonSlurper().parseText('{ "items": [1, 2] }')
                             object.items.each { item ->
                                 echo "Agent1 - ${item}"
                             }
