@@ -5,15 +5,14 @@ pipeline {
             parallel {
                 stage('Agent1') {
                     agent {
-                        label "agent1"
+                        label "agent1X"
                     }
-                    stages {
-                        stage("build") {
-                            steps {
-                                sh '''
-                                    sudo docker build -t python_test .
-                                    sudo docker run python_test
-                                '''
+                    steps {
+                        script {
+                            def jsonSlurper = new JsonSlurper()
+                            def object = jsonSlurper.parseText('{ "items": [1, 2] }')
+                            object.items.each { item ->
+                                echo "Agent1 - ${item}"
                             }
                         }
                     }
