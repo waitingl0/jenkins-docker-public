@@ -9,8 +9,9 @@ pipeline {
                     }
                     steps {
                         script {
-                            def object = readJSON text: '{ "items": [1, 2] }'
-                            object['items'].each { item ->
+                            // def object = readJSON text: '{ "items": [1, 2] }'
+                            def object = readJSON file: 'files.json'
+                            object.items.each { item ->
                                 echo "Agent1 - ${item}"
                             }
                         }
